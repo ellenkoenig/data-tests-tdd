@@ -12,3 +12,10 @@ def test_lines_should_contain_numbers():
     assert all(ptypes.is_numeric_dtype(df[col]) for col in df)
 
 
+def only_contains_numbers(df):
+    return all(ptypes.is_numeric_dtype(df[col]) for col in df)
+
+
+def test_lines_should_contain_numbers_helper():
+    df = pd.read_csv("part-00000-4c8de288-2713-4e86-b5a5-a44ad4badba5-c000.csv", error_bad_lines=False)
+    assert only_contains_numbers(df)
